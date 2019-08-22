@@ -19,11 +19,32 @@ class Instructor extends Person {
         this.catchPhrase=catchPhrase;
     }
 
-    demo(subjectString) {
-        console.log(`Today we are learning about ${subjectString}.`);
+    demo(subject) {
+        console.log(`Today we are learning about ${subject}.`);
     }
 
-    grade(studentObject, subjectString) {
-        console.log(`${studentObject.name} receives a perfect score on ${subjectString}`);
+    grade(studentObject, subject) {
+        console.log(`${studentObject.name} receives a perfect score on ${subject}`);
+    }
+}
+
+class Student extends Person {
+    constructor(name, age, location, previousBackground, className, favSubjects) {
+        super(name, age, location);
+        this.previousBackground = previousBackground;
+        this.className = className;
+        this.favSubjects = favSubjects;
+    }
+
+    listSubjects() { // I prefer 'listSubjects' to 'listsSubjets'...
+        this.favSubjects.forEach(subject => console.log(subject));
+    }
+
+    PRAssignment(subject) {
+        console.log(`${this.name} has submitted a PR for ${subject}`);
+    }
+
+    sprintChallenge(subject) {
+        console.log(`${this.name} has begun sprint challenge on ${subject}`);
     }
 }
