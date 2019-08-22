@@ -20,23 +20,28 @@ Prototype Refactor
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
 */
-function Person(name, age) {
-    this.name = name;
-    this.age = age;
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+
+        this.stomach = [];
+    }
+    
+    greet() {
+        return `Hello! My name is ${this.name} and I am ${this.age} years old.`;
+    }
+
+    eat(edible) {
+        this.stomach.push(edible);
+    }
+
+    poop() {
+        this.stomach = [];
+    }
+}
   
-    this.stomach = [];
-  }
-  Person.prototype.greet = function() {
-    return `Hello! My name is ${this.name} and I am ${this.age} years old.`;
-  }
-  Person.prototype.eat = function(edible) {
-    this.stomach.push(edible);
-  }
-  Person.prototype.poop = function() {
-    this.stomach = [];
-  }
-  
-  // I did my testing in the console! :)
+// I did my testing in the console! :)
   
   /*
     TASK 2
