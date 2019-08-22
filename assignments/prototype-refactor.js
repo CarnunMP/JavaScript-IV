@@ -172,7 +172,6 @@ console.log(Math.sqrt( (xDiff * xDiff) + (yDiff * yDiff)));
 return Math.sqrt( (xDiff * xDiff) + (yDiff * yDiff) ) <= range;
 }
 
-
 // Some tests for Task 4 (also used console):
 var slime1 = new Slime(1, [100, 100]); // Q: Any way around ordering these args like the parent orders them?
 console.log(slime1);
@@ -203,13 +202,16 @@ Each constructor function has unique properties and methods that are defined in 
 * dimensions (These represent the character's size in the video game)
 * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
-function GameObject(createdAt, name, dimensions) {
-this.createdAt = createdAt;
-this.name = name;
-this.dimensions = dimensions;
-}
-GameObject.prototype.destroy = function() {
-return `${this.name} was removed from the game.`;
+class GameObject {
+    constructor(createdAt, name, dimensions) {
+        this.createdAt = createdAt;
+        this.name = name;
+        this.dimensions = dimensions;
+    }
+
+    destroy() {
+        return `${this.name} was removed from the game.`;
+    }
 }
 
 /*
@@ -218,13 +220,15 @@ return `${this.name} was removed from the game.`;
 * takeDamage() // prototype method -> returns the string '<object name> took damage.'
 * should inherit destroy() from GameObject's prototype
 */
-function CharacterStats(createdAt, name, dimensions, healthPoints) {
-GameObject.call(this, createdAt, name, dimensions);
-this.healthPoints = healthPoints;
-}
-CharacterStats.prototype = Object.create(GameObject.prototype);
-CharacterStats.prototype.takeDamage = function() {
-return `${this.name} took damage.`;
+class CharacterStats {
+    constructor(createdAt, name, dimensions, healthPoints) {
+        super(createdAt, name, dimensions);
+        this.healthPoints = healthPoints;
+    }
+
+    takeDamage() {
+        return `${this.name} took damage.`;
+    }
 }
 
 /*
@@ -236,16 +240,16 @@ return `${this.name} took damage.`;
 * should inherit destroy() from GameObject through CharacterStats
 * should inherit takeDamage() from CharacterStats
 */
-function Humanoid(gameObj) {
-CharacterStats.call(this, gameObj.createdAt, gameObj.name, gameObj.dimensions, gameObj.healthPoints);
-this.team = gameObj.team;
-this.weapons = gameObj.weapons;
-this.language = gameObj.language;
-}
-Humanoid.prototype = Object.create(CharacterStats.prototype);
-Humanoid.prototype.greet = function() {
-return `${this.name} offers a greeting in ${this.language}.`;
-}
+// function Humanoid(gameObj) {
+// CharacterStats.call(this, gameObj.createdAt, gameObj.name, gameObj.dimensions, gameObj.healthPoints);
+// this.team = gameObj.team;
+// this.weapons = gameObj.weapons;
+// this.language = gameObj.language;
+// }
+// Humanoid.prototype = Object.create(CharacterStats.prototype);
+// Humanoid.prototype.greet = function() {
+// return `${this.name} offers a greeting in ${this.language}.`;
+// }
 
 /*
 * Inheritance chain: GameObject -> CharacterStats -> Humanoid
