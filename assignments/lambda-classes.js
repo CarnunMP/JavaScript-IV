@@ -81,7 +81,10 @@ class Student extends PersonAlt {
         if (this.grade > 70) {
             console.log(`${this.name} has graduated with a grade of ${this.grade}/100!`);
         } else {
-            Instructor.changeGrade(this);
+            console.log(`${this.name} didn't pass with a grade of ${this.grade}/100.`);
+            Instructor.prototype.changeGrade(this);
+            console.log(`${this.name} took the exam again. New grade: ${this.grade}/100`);
+            this.graduate(); // A little bit of recursion, why not? :P
         }
     }
 }
@@ -116,7 +119,13 @@ console.log(popper.speak());
 
 // Stretch:
 for (let i = 0; i < 3; i++) { // Testing Instructor.prorotype.changeGrade(studentObject)
-    console.log(carnun.grade);
+    console.log(`Carnun's grade before David changes it: ${carnun.grade}.`);
     david.changeGrade(carnun);
+    console.log(`Carnun's grade after David changes it, and before Popper changes it: ${carnun.grade}.`);
+    popper.changeGrade(carnun);
+    console.log(`Carnun's grade after Popper changes it: ${carnun.grade}.`)
 }
 
+console.log("...")
+carnun.grade = 60;
+carnun.graduate();
