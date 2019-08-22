@@ -75,12 +75,22 @@ TASK 3
 - Babies should have the ability to play, which persons don't.
 - By playing, a string is returned with some text of your choosing.
 */
-function Baby(name, age) {
-Person.call(this, name, age);
-}
-Baby.prototype = Object.create(Person.prototype);
-Baby.prototype.play = function() {
-return `I'm better than you at this game, and I'm only ${this.age}...`
+// function Baby(name, age) {
+// Person.call(this, name, age);
+// }
+// Baby.prototype = Object.create(Person.prototype);
+// Baby.prototype.play = function() {
+// return `I'm better than you at this game, and I'm only ${this.age}...`
+// }
+
+class Baby extends Person {
+    constructor(name, age) {
+        super(name, age);
+    }
+
+    play() {
+        return `I'm better than you at this game, and I'm only ${this.age}...`
+    }
 }
 
 /*
