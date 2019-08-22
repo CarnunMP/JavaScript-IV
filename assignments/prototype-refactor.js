@@ -220,7 +220,7 @@ class GameObject {
 * takeDamage() // prototype method -> returns the string '<object name> took damage.'
 * should inherit destroy() from GameObject's prototype
 */
-class CharacterStats {
+class CharacterStats extends GameObject {
     constructor(createdAt, name, dimensions, healthPoints) {
         super(createdAt, name, dimensions);
         this.healthPoints = healthPoints;
@@ -240,16 +240,19 @@ class CharacterStats {
 * should inherit destroy() from GameObject through CharacterStats
 * should inherit takeDamage() from CharacterStats
 */
-// function Humanoid(gameObj) {
-// CharacterStats.call(this, gameObj.createdAt, gameObj.name, gameObj.dimensions, gameObj.healthPoints);
-// this.team = gameObj.team;
-// this.weapons = gameObj.weapons;
-// this.language = gameObj.language;
-// }
-// Humanoid.prototype = Object.create(CharacterStats.prototype);
-// Humanoid.prototype.greet = function() {
-// return `${this.name} offers a greeting in ${this.language}.`;
-// }
+class Humanoid extends CharacterStats {
+    constructor(gameObj) {
+        super(gameObj.createdAt, gameObj.name, gameObj.dimensions, gameObj.healthPoints);
+
+        this.team = gameObj.team;
+        this.weapons = gameObj.weapons;
+        this.language = gameObj.language;
+    }
+
+    greet() {
+        return `${this.name} offers a greeting in ${this.language}.`;
+    }
+}
 
 /*
 * Inheritance chain: GameObject -> CharacterStats -> Humanoid
