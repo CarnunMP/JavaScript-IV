@@ -118,7 +118,7 @@ popper.demo("Evolutionary Epistemology");
 console.log(popper.speak());
 
 // Stretch:
-for (let i = 0; i < 3; i++) { // Testing Instructor.prorotype.changeGrade(studentObject)
+for (let i = 0; i < 3; i++) { // Testing Instructor.prototype.changeGrade(studentObject)
     console.log(`Carnun's grade before David changes it: ${carnun.grade}.`);
     david.changeGrade(carnun);
     console.log(`Carnun's grade after David changes it, and before Popper changes it: ${carnun.grade}.`);
@@ -127,5 +127,5 @@ for (let i = 0; i < 3; i++) { // Testing Instructor.prorotype.changeGrade(studen
 }
 
 console.log("...")
-carnun.grade = 60;
+carnun.grade = 60; // Testing Student.prototype.graduate()
 carnun.graduate();
