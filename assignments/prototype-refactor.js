@@ -130,21 +130,22 @@ class Enemy {
     }
 }
 
+class Slime extends Enemy {
+    constructor(id, positionXY, hitboxXY = [10, 10], hp = 5, speed = 1, strength = 1, type = "basic") {
+        super(id, positionXY, hitboxXY, hp, speed, strength);
 
-// function Slime(id, positionXY, hitboxXY = [10, 10], hp = 5, speed = 1, strength = 1, type = "basic") {
-// Enemy.call(this, id, positionXY, hitboxXY, hp, speed, strength);
+        this.type = type;
+    }
 
-// this.type = type;
-// }
-// Slime.prototype = Object.create(Enemy.prototype);
-// Slime.prototype.jump = function(unitDirectionXY) {
-// this.positionXY[0] += (unitDirectionXY[0] * this.speed);
-// this.positionXY[1] += (unitDirectionXY[1] * this.speed);
+    jump(unitDirectionXY) {
+        this.positionXY[0] += (unitDirectionXY[0] * this.speed);
+        this.positionXY[1] += (unitDirectionXY[1] * this.speed);
 
-// if (this.type === "leaky") { 
-//     this.hp -= 1;
-// }
-// }
+        if (this.type === "leaky") { 
+            this.hp -= 1;
+        }
+    }
+}
 
 // function BombBeetle(id, positionXY, hitboxXY, hp = 7, speed = 1, strength = 2, type = "basic", range = 25) {
 // Enemy.call(this, id, positionXY, hitboxXY, hp, speed, strength);
