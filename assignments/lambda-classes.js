@@ -32,6 +32,23 @@ class Instructor extends PersonAlt {
     grade(studentObject, subject) {
         console.log(`${studentObject.name} receives a perfect score on ${subject}.`);
     }
+
+    changeGrade(studentObject) { // Stretch
+        let randomChange;
+        if (Math.random() > 0.5) {
+            randomChange = Math.round(Math.random() * 100);
+        } else {
+            randomChange = -Math.round(Math.random() * 100);
+        }
+
+        if (studentObject.grade + randomChange <= 0) {
+            studentObject.grade = 0;
+        } else if (studentObject.grade + randomChange >= 100) {
+            studentObject.grade = 100;
+        } else {
+            studentObject.grade += randomChange;
+        }
+    }
 }
 
 const david = new Instructor("David", 66, "Oxford", "Quantum Computers", "Java", "Problems are soluble!");
@@ -45,6 +62,7 @@ class Student extends PersonAlt {
         this.previousBackground = previousBackground;
         this.className = className;
         this.favSubjects = favSubjects;
+        this.grade = Math.round(Math.random() * 100); // Stretch
     }
 
     listSubjects() { // I prefer 'listSubjects' to 'listsSubjets'...
@@ -57,6 +75,14 @@ class Student extends PersonAlt {
 
     sprintChallenge(subject) {
         console.log(`${this.name} has begun sprint challenge on ${subject}`);
+    }
+
+    graduate() { // Stretch
+        if (this.grade > 70) {
+            console.log(`${this.name} has graduated with a grade of ${this.grade}/100!`);
+        } else {
+            Instructor.changeGrade(this);
+        }
     }
 }
 
@@ -87,3 +113,10 @@ popper.standUp("#webEU3");
 popper.debugCode(fred, "Classes and Inheritance");
 popper.demo("Evolutionary Epistemology");
 console.log(popper.speak());
+
+// Stretch:
+for (let i = 0; i < 3; i++) { // Testing Instructor.prorotype.changeGrade(studentObject)
+    console.log(carnun.grade);
+    david.changeGrade(carnun);
+}
+
